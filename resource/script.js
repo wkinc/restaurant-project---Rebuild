@@ -11,6 +11,9 @@ const inventory = [
   {name:"Calabrian chili paste", cat:"Dry goods", unit:"jars", qty:1, par:6},
 ];
 
+// Cloudflare Worker URL — replace with your deployed Worker's address
+const WORKER_URL = "https://restock-proxy.wkinchua05.workers.dev/";
+
 const rows = document.getElementById("rows");
 inventory.forEach(it => {
   const pct = Math.min(100, Math.round((it.qty / it.par) * 100));
@@ -34,13 +37,6 @@ btn.addEventListener("click", async () => {
   panel.className = "show";
   panel.innerHTML = `<h2>Restock plan</h2><span class="dot">●</span> <span class="dot">●</span> <span class="dot">●</span>`;
 
-  const sample = await claude.use("sample");
-  if (!sample) {
-    panel.innerHTML = `<h2>Restock plan</h2>Kitchen assistant isn't available in this view.`;
-    btn.disabled = false;
-    return;
-  }
-
   const prompt = `You are the kitchen manager's restock assistant for a restaurant called Woodfire & Co.
 Here is tonight's inventory (item, category, unit, on-hand, par level):
 ${inventory.map(i => `- ${i.name} (${i.cat}): ${i.qty} ${i.unit} on hand, par ${i.par} ${i.unit}`).join("\n")}
@@ -51,10 +47,20 @@ Write a short, direct restock plan for the kitchen manager:
 Keep it tight and practical, like a note pinned to the kitchen board. No preamble.`;
 
   try {
-    const result = await sample(prompt, { modelTier: "quick" });
-    panel.innerHTML = `<h2>Restock plan</h2>${result.text}`;
+    const response = await fetch(WORKER_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        messages: [{ role: "user", content: prompt }]
+      })
+    });
+
+    if (!response.ok) throw new Error(`API error ${response.status}`);
+    const data = await response.json();
+    const text = data.content.map(b => b.text || "").join("\n");
+    panel.innerHTML = `<h2>Restock plan</h2>${text}`;
   } catch (e) {
-    panel.innerHTML = `<h2>Restock plan</h2>Couldn't reach the assistant (${e.code || "error"}). Try again in a moment.`;
+    panel.innerHTML = `<h2>Restock plan</h2>Couldn't reach the assistant (${e.message}). Try again in a moment.`;
   } finally {
     btn.disabled = false;
   }
