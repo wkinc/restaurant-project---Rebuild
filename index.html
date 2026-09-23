@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Restock — Kitchen Inventory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="kicker">Woodfire &amp; Co. — Back of House</div>
+    <h1>Tonight's stock check</h1>
+    <div class="sub">Current counts against par level. Items running low are flagged — ask the kitchen assistant for a restock plan when you're ready to order.</div>
+  </header>
+
+  <table>
+    <thead><tr><th>Item</th><th>On hand</th><th>Par</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+
+  <div class="actions">
+    <button id="askBtn">Get restock recommendations</button>
+    <span class="hint" id="hint">Uses the items above to suggest what to order and how much.</span>
+  </div>
+
+  <div id="panel"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
