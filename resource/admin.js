@@ -55,7 +55,7 @@ const inventory = [
   {name:"Calabrian chili paste", cat:"Dry goods", unit:"jars", qty:1, par:6},
 ];
 
-const WORKER_URL = "https://restock-proxy.yourname.workers.dev"; // your deployed Worker URL
+const WORKER_URL = "https://restock-proxy.wkinchua05.workers.dev/"; // your deployed Worker URL
 
 const rows = document.getElementById("rows");
 inventory.forEach(it => {
