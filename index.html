@@ -2,34 +2,67 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Restock — Kitchen Inventory</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="resource/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Woodfire & Co.</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <div class="kicker">Woodfire &amp; Co. — Back of House</div>
-    <h1>Tonight's stock check</h1>
-    <div class="sub">Current counts against par level. Items running low are flagged — ask the kitchen assistant for a restock plan when you're ready to order.</div>
-  </header>
-
-  <table>
-    <thead><tr><th>Item</th><th>On hand</th><th>Par</th></tr></thead>
-    <tbody id="rows"></tbody>
-  </table>
-
-  <div class="actions">
-    <button id="askBtn">Get restock recommendations</button>
-    <span class="hint" id="hint">Uses the items above to suggest what to order and how much.</span>
+<nav>
+  <a class="brand" href="index.html">Woodfire &amp; Co.</a>
+  <div class="nav-links">
+    <a href="#menu">Menu</a>
+    <a href="#order">Order</a>
+    <a class="staff" href="login.html">Staff</a>
   </div>
+</nav>
 
-  <div id="panel"></div>
+<div class="hero">
+  <div class="eyebrow">Wood-fired, always</div>
+  <h1>Simple food, done with care.</h1>
+  <p>A small kitchen serving wood-fired mains, fresh produce, and a short, seasonal menu. Order ahead and we'll have it ready.</p>
+  <div class="hours">Tue–Sun, 5pm–11pm · 214 Ember Lane</div>
 </div>
 
-<script src="resource/script.js"></script>
+<section id="menu">
+  <div class="section-title">Menu</div>
+  <div class="section-sub">A short menu, changed with the season.</div>
+
+  <div class="menu-group">
+    <h3>Starters</h3>
+    <div class="dish"><span class="name">Burrata, Heirloom Tomato</span><span class="fill"></span><span class="price">$14</span><button class="add" data-name="Burrata, Heirloom Tomato" data-price="14">Add</button></div>
+    <div class="dish"><span class="name">Blistered Shishito Peppers</span><span class="fill"></span><span class="price">$9</span><button class="add" data-name="Blistered Shishito Peppers" data-price="9">Add</button></div>
+  </div>
+
+  <div class="menu-group">
+    <h3>Mains</h3>
+    <div class="dish"><span class="name">Wagyu Striploin, Ember Roast</span><span class="fill"></span><span class="price">$42</span><button class="add" data-name="Wagyu Striploin, Ember Roast" data-price="42">Add</button></div>
+    <div class="dish"><span class="name">Wood-Fired Chicken Thigh</span><span class="fill"></span><span class="price">$24</span><button class="add" data-name="Wood-Fired Chicken Thigh" data-price="24">Add</button></div>
+    <div class="dish"><span class="name">Pan-Seared Yellowfin Tuna</span><span class="fill"></span><span class="price">$29</span><button class="add" data-name="Pan-Seared Yellowfin Tuna" data-price="29">Add</button></div>
+  </div>
+
+  <div class="menu-group">
+    <h3>Sides</h3>
+    <div class="dish"><span class="name">Ember-Roasted Yukon Gold</span><span class="fill"></span><span class="price">$8</span><button class="add" data-name="Ember-Roasted Yukon Gold" data-price="8">Add</button></div>
+  </div>
+</section>
+
+<section id="order">
+  <div class="section-title">Your order</div>
+  <div class="section-sub">Add dishes above, then place your order below.</div>
+
+  <div class="cart">
+    <h3>Cart</h3>
+    <div id="cartItems"><div class="cart-empty">Nothing added yet.</div></div>
+    <div class="cart-total" id="cartTotal" style="display:none;"><span>Total</span><span id="totalAmount"></span></div>
+
+    <div class="field"><label>Your name</label><input id="custName" placeholder="e.g. Alex"></div>
+    <div class="field"><label>Table number</label><input id="custTable" placeholder="e.g. 12"></div>
+
+    <button class="primary" id="placeOrder" disabled>Place order</button>
+    <div class="confirm" id="confirmMsg">Order sent to the kitchen — thank you!</div>
+  </div>
+</section>
+
+<script src="order.js"></script>
 </body>
 </html>
