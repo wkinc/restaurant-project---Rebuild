@@ -1,4 +1,4 @@
-# Restock — Kitchen Inventory (Rebuild)
+# Restock Kitchen Inventory (Rebuild)
 
 This is a rebuild of the AI-powered restaurant inventory project from the hackathon. It is a much simpler version.
 
