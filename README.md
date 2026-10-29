@@ -4,7 +4,9 @@ This is a rebuild of the AI-powered restaurant inventory project from the hackat
 
 ## About
 
-The original project was built for a hackathon (Top 10, The Access Group 2026). This version keeps the main idea — inventory with AI restock suggestions — but adds a simple restaurant website on top, with a customer side and a staff side.
+The original project was built for a hackathon (Top 10, The Access Group 2026). This version keeps the main idea, inventory with AI restock suggestions, but adds a simple restaurant website on top, with a customer side and a staff side. Also this version is not using Claude API as it costs money, so I am using a free LLM model.
+
+If testing, the analyse will not work as I did not keep CloudFlare worker running.
 
 ## What it does
 
